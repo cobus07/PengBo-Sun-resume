@@ -1,0 +1,304 @@
+html{
+	/*-webkit-text-size-adjust: none;*/
+	font-size: 62.5%;
+	}
+body{
+	font-family: "Microsoft YaHei", "Helvetiva";
+	}
+#container{
+	width: 100%;
+	}
+header{
+	width: 100%;
+	text-align: center;
+	font-weight: 400;
+	color: #fff;
+	background-color: #00cc99;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	}
+.car-wrap{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 90%;
+	padding: 1rem 0;
+	margin: 0 auto;
+	}
+.carousel{
+	background-color: #ccc;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 100%;
+	padding-top: 66.7%;
+	}
+.content{
+	width: 100%;
+}
+.wrap{
+	margin: 0 auto;
+}
+.content li{
+	width: 100%;
+	border-radius: 0.3rem;
+	border: 0.1rem solid #ccc;
+	margin: 2rem 0;
+	}
+.content .col1{
+	float: left;
+	}
+.content .col2{
+	float: right;
+	}
+.content .col>:first-child{
+	margin-top: 0;
+}
+.activity{
+	width: 100%;
+	height: 100%;
+	border-top-left-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+	overflow: hidden;
+	position: relative;
+	}
+.activity img{
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	display: block;
+	}
+.detail{
+	width: 100%;
+	margin: 0 auto;
+	}
+.info{
+	position: absolute;
+	left: 2vw;
+	bottom: 1vh;
+}
+.info .info-detail{
+	display: block;
+	color: #fff;
+	}
+.info .position i{
+	display: inline-block;
+	width: 0.9rem;
+	height: 1.2rem;
+	background: url(../imgs/position.png) no-repeat 0 0;
+	}
+.detail .photo img{
+	display: block;
+	border-radius: 100%;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	}
+.wrap{
+	width: 90%;
+	}
+.content ul{
+	width: 48%;
+	}
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+	header{
+		height: 4rem;
+		line-height: 4rem;
+		letter-spacing: 0.2rem;
+		font-size: 1rem;
+	}
+	.car-wrap{
+		margin-top: 4rem;
+	}
+	.info .info-detail{
+		height: 1.7rem;
+		line-height: 1.7rem;
+		font-size: 1rem;
+	}
+	.info .date{
+		font-size: 1rem;
+	}
+	.info .date strong{
+		font-size: 1.5rem;
+	}
+	.detail .person{
+		height: 5rem;
+		width: 100%;
+		margin-left: 2vw;
+	}
+	.detail .photo{
+		float: left;
+		width: 3rem;
+		height: 3rem;
+		margin: 1rem auto;
+	}
+	.detail .title{
+		padding: 0.7rem 0.7rem 0;
+		letter-spacing: 0.2rem;
+		font-size: 1.3rem;
+	}
+	.detail .name{
+		float: left;
+		height: 5rem;
+		margin-left: 1vw;
+		line-height: 5rem;
+		font-size: 1.3rem;
+		font-weight: 500;
+		letter-spacing: 0.2rem;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	header{
+		height: 5rem;
+		line-height: 5rem;
+		letter-spacing: 0.2rem;
+		font-size: 1.3rem;
+	}
+	.car-wrap{
+		margin-top: 5rem;
+	}
+	.info .info-detail{
+		height: 2rem;
+		line-height: 2rem;
+		font-size: 1.3rem;
+	}
+	.info .date{
+		font-size: 1rem;
+	}
+	.info .date strong{
+		font-size: 1.7rem;
+	}
+	.detail .person{
+		height: 7rem;
+		width: 100%;
+		margin-left: 2vw;
+	}
+	.detail .photo{
+		float: left;
+		width: 4rem;
+		height: 4rem;
+		margin: 1.5rem auto;
+	}
+	.detail .title{
+		padding: 1.5rem 1.5rem 0;
+		letter-spacing: 0.2rem;
+		font-size: 2rem;
+	}
+	.detail .name{
+		float: left;
+		height: 7rem;
+		margin-left: 1vw;
+		line-height: 7rem;
+		font-size: 2rem;
+		font-weight: 600;
+		letter-spacing: 0.2rem;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	header{
+		height: 7rem;
+		line-height: 7rem;
+		letter-spacing: 0.3rem;
+		font-size: 1.7rem;
+	}
+	.car-wrap{
+		margin-top: 7rem;
+	}
+	.info .info-detail{
+		height: 2.2rem;
+		line-height: 2.2rem;
+		font-size: 1.4rem;
+	}
+	.info .date{
+		font-size: 1.2rem;
+	}
+	.info .date strong{
+		font-size: 2rem;
+	}
+	.detail .person{
+		height: 7em;
+		width: 100%;
+		margin-left: 2vw;
+	}
+	.detail .photo{
+		float: left;
+		width: 4rem;
+		height: 4rem;
+		margin: 1.5rem auto;
+	}
+	.detail .title{
+		padding: 2rem 2rem 0;
+		letter-spacing: 0.3rem;
+		font-size: 2rem;
+	}
+	.detail .name{
+		float: left;
+		height: 7rem;
+		margin-left: 1vw;
+		line-height: 7rem;
+		font-size: 2rem;
+		font-weight: 600;
+		letter-spacing: 0.3rem;
+	}
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	header{
+		height: 8.6rem;
+		line-height: 8.6rem;
+		letter-spacing: 0.3rem;
+		font-size: 2rem;
+	}
+	.car-wrap{
+		margin-top: 8.6rem;
+	}
+	.info .info-detail{
+		height: 2.6rem;
+		line-height: 2.6rem;
+		font-size: 1.4rem;
+	}
+	.info .date{
+		font-size: 1.2rem;
+	}
+	.info .date strong{
+		font-size: 2rem;
+	}
+	.detail .person{
+		height: 9rem;
+		width: 100%;
+		margin-left: 2vw;
+	}
+	.detail .photo{
+		float: left;
+		width: 5rem;
+		height: 5rem;
+		margin: 2rem auto;
+	}
+	.detail .title{
+		padding: 2rem 2rem 0;
+		letter-spacing: 0.3rem;
+		font-size: 2.2rem;
+	}
+	.detail .name{
+		float: left;
+		height: 9rem;
+		margin-left: 1vw;
+		line-height: 9rem;
+		font-size: 2rem;
+		font-weight: 600;
+		letter-spacing: 0.3rem;
+	}
+
+}
+
+/* Large Devices, Wide Screens */
+/*@media only screen and (min-width : 1200px) {
+	
+}*/

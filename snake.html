@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>贪吃蛇1.0</title>
+	<style type="text/css">
+	#container{width: 1000px;margin: 0 auto;border: 3px solid #aaa;}
+	#comment{width: 100px;height: 300px;background-color: #eee;border: 2px solid #ccc;position: absolute;top: 150px;padding: 10px;font-size: 15px;font-weight: bold;margin-left: 20px;}
+	#ground{width: 1000px;height: 500px;background-color: #ccc;position: relative;}
+	#control{width: 994px;height: 100px;line-height: 100px;text-indent: 30px;font-weight: bold;}
+	#buttons{float: right;margin-right: 70px;}
+	.block{width: 20px;height: 20px;float: left;}
+    .snakeone{top:60px;background-color: #999;position: absolute;}
+	.food{background-color: #555;position: absolute;}
+	.du{background-color: red;position: absolute;}
+	.jie{background-color: green;position: absolute;}
+	.a{color: red;}
+	.b{color: green;}
+	.c{color: grey;}
+	.d{background-color: #aaa;}
+	#score{width: 50px;border: 2px solid #ccc}
+	</style>
+</head>
+<body>
+<div id="comment">
+		<span class="com a">红色</span>：毒药，吃完加长减分<br/><br/>
+		<span class="com b">绿色</span>：解药，吃完加长加分<br/><br/>
+		<span class="con c">灰色</span>：食物，吃完加长加分<br/><br/>
+		<span class="com d">操作方法</span>：<br/><br/>
+		键盘上下左右键操作蛇的上下左右移动，默认初始移动方向向左
+</div>
+<div id="container">
+	<div id="ground"></div>
+	<div id="control">
+		<label for="scord">分值板</label>
+		<input type="text" id="score" value="0">
+		<span>&nbsp;&nbsp;cobus&nbsp;贪吃蛇(JavaScript面向过程)1.0</span>
+		<div id="buttons">
+			<input type="button" id="start" value="开始">
+			<input type="button" id="quick" value="加速">
+			<input type="button" id="slow" value="减速">
+			<input type="button" id="pause" value="暂停">
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	// 1.初始化草场
+	var oGround = document.getElementById('ground');
+	var ROWS = 25, COLS = 50; //创建常量，一般不改变
+	for(var i=0; i<ROWS; i++){
+		for(var j=0; j<COLS; j++){
+			var oDiv = document.createElement('div'); //创建元素，创建在内存中，需要添加到网页中
+			oDiv.className = "block"; //样式写在CSS中，在JS中通过类名（className）来调用
+			oGround.appendChild(oDiv); //添加div
+		}
+	}
+	//2.初始化蛇
+	var aSnakeBody = [];//蛇身数组 代表一整条蛇
+	for(var i=0; i<3; i++){
+		var oSnakeone = document.createElement('div');
+		oSnakeone.className = "snakeone block";
+		oSnakeone.style.left = (3-i)*20 + "px"; //JS定义的样式在内联样式中
+		oGround.appendChild(oSnakeone);
+		aSnakeBody.push(oSnakeone);
+	}
+	//3.初始化食物
+	var oFood, FoLeft, FoTop;
+	function createFood(){
+		do{	//判断食物是否在ground边界内
+			var bFlag = true; //一个标识 如果值为true代表食物创建成功，如果值为false代表食物创建失败
+			FoLeft = Math.floor(Math.random()*50)*20;
+			FoTop = Math.floor(Math.random()*25)*20;
+			//判断食物和蛇身是否重合
+			for(var i=0; i<aSnakeBody.length; i++){
+			 	if(aSnakeBody[i].offsetLeft == FoLeft && aSnakeBody[i].offsetTop == FoTop && FoLeft == DuLeft && FoLeft == JieLeft && FoTop == DuTop && FoTop == JieTop){//说明重合
+			 		bFlag = false;
+			 		break; //跳出循环
+			 	}
+			}
+		}while(!bFlag);
+			oFood = document.createElement('div');
+			oFood.className = "block food";
+			oFood.style.left = FoLeft + "px";
+			oFood.style.top = FoTop + "px";
+			oGround.appendChild(oFood);
+	}
+	createFood();
+	//初始化毒物
+	var oDu, DuLeft, DuTop;
+ 	function createDu(){
+			do{	//判断毒物是否在ground边界内
+				var bFlag = true;
+				 //一个标识 如果值为true代表食物创建成功，如果值为false代表食物创建失败
+				DuLeft = Math.floor(Math.random()*50)*20;
+				DuTop = Math.floor(Math.random()*25)*20;
+				//判断食物和蛇身是否重合
+				for(var j=0; j<10; j++){
+					for(var i=0; i<aSnakeBody.length; i++){
+					 	if(aSnakeBody[i].offsetLeft == DuLeft && aSnakeBody[i].offsetTop == DuTop && FoLeft == DuLeft && FoLeft == JieLeft && FoTop == DuTop && FoTop == JieTop){//说明重合
+					 		bFlag = false;
+					 		break; //跳出循环
+					 	}
+					}
+				}
+				
+			}while(!bFlag);
+				oDu = document.createElement('div');
+				oDu.className = "block du";
+				oDu.style.left = DuLeft + "px";
+				oDu.style.top = DuTop + "px";
+				oGround.appendChild(oDu);	
+			}
+	createDu();
+	//初始化解药
+	var oJie, JieLeft, JieTop;
+	function createJie(){
+		do{	//判断毒物是否在ground边界内
+			var bFlag = true; //一个标识 如果值为true代表食物创建成功，如果值为false代表食物创建失败
+			var JieLeft = Math.floor(Math.random()*50)*20;
+			var JieTop = Math.floor(Math.random()*25)*20;
+			//判断食物和蛇身是否重合
+			for(var i=0; i<aSnakeBody.length; i++){
+			 	if(aSnakeBody[i].offsetLeft == JieLeft && aSnakeBody[i].offsetTop == JieTop && FoLeft == DuLeft && FoLeft == JieLeft && FoTop == DuTop && FoTop == JieTop){//说明重合
+			 		bFlag = false;
+			 		break; //跳出循环
+			 	}
+			}
+		}while(!bFlag);
+		oJie = document.createElement('div');
+		oJie.className = "block jie";
+		oJie.style.left = JieLeft + "px";
+		oJie.style.top = JieTop + "px";
+		oGround.appendChild(oJie);
+	}
+	createJie();
+	//开始游戏
+	var bDown = false;
+	var direction = "right";//初始蛇的移动方向
+	var timer;
+
+	(function(){
+
+		var score = 0;
+	var speed = 300;
+	var k = 1;
+	var oStart = document.getElementById('start');
+	var oPause = document.getElementById('pause');
+	var oQuick = document.getElementById('quick');
+	var oSlow = document.getElementById('slow');
+	var oScore = document.getElementById('score');
+
+
+	oStart.onclick = function(){
+		if(timer){
+			clearInterval(timer);
+		}
+		timer = setInterval(function(){
+			move();
+		},speed);
+	};
+
+	
+	oPause.onclick = function(){
+		clearInterval(timer);
+	};
+	// function gameQuick(){
+		oQuick.onclick = function(){
+			k++;
+			if (speed == 50){
+				speed = 50;
+			}
+			else{
+				if(timer){
+				clearInterval(timer);
+			}
+			timer = setInterval(function(){
+				move();
+			},speed -= 50);
+		}
+		};
+	// }
+	// gameQuick();
+	oSlow.onclick = function(){
+		k--;
+		if(speed == 800){
+			speed = 800;
+		}
+		else{
+		if(timer){
+			clearInterval(timer);
+		}
+		timer = setInterval(function(){
+			move();
+		},speed += 50);
+	}
+	};
+
+	function move(){
+		var snakeHead = aSnakeBody[0];
+		var nextPos = {
+			left: snakeHead.offsetLeft,
+			top: snakeHead.offsetTop
+		};
+		if(direction == "left" ){
+			nextPos.left -= 20;	
+		}else if(direction == "right"){
+			nextPos.left += 20;
+		}else if(direction == "up"){
+			nextPos.top -= 20;		
+		}else if(direction == "down"){
+			nextPos.top += 20;				
+		}
+		for(var i=0; i<aSnakeBody.length; i++){
+			var nowPos = {
+				left: aSnakeBody[i].offsetLeft,
+				top: aSnakeBody[i].offsetTop
+			};
+			aSnakeBody[i].style.left = nextPos.left + 'px';
+			aSnakeBody[i].style.top = nextPos.top + 'px';
+			nextPos = nowPos;
+		}
+		//蛇吃身体
+		for(var i=4; i<aSnakeBody.length; i++){
+			if(snakeHead.offsetLeft == aSnakeBody[i].offsetLeft && snakeHead.offsetTop == aSnakeBody[i].offsetTop){
+				// alert("Game over");
+				if(confirm("Game over 请开始新游戏")){
+					window.location.reload();
+				}
+				else{
+					clearInterval(timer);
+				}
+			}
+		}
+		//吃食物
+		if(snakeHead.offsetTop == oFood.offsetTop && snakeHead.offsetLeft == oFood.offsetLeft){
+			oFood.className = "block snakeone";
+			aSnakeBody.push(oFood);
+			createFood();
+			// gameQuick();
+			// speed += 50;
+			// gameStart(speed);
+			if(k>0){
+				score += 30*k; 
+				oScore.value = score;
+				console.log(k);
+			}
+		}
+		//吃毒物
+		if(snakeHead.offsetTop == oDu.offsetTop && snakeHead.offsetLeft == oDu.offsetLeft){
+			oDu.className = "block snakeone";
+			aSnakeBody.push(oDu);
+			createDu();
+			// gameQuick();
+			// speed += 50;
+			// gameStart(speed);
+			if(k>0){
+				score -= 15*k;
+				oScore.value = score;
+				console.log(k);
+			}
+			
+		}
+		//吃解药
+		if(snakeHead.offsetTop == oJie.offsetTop && snakeHead.offsetLeft == oJie.offsetLeft){
+			oJie.className = "block snakeone";
+			aSnakeBody.push(oJie);
+			createJie();
+			// speed -= 50;
+			// gameStart(speed);
+			score += 15;
+			oScore.value = score;
+		}
+		//蛇吃墙
+		if(snakeHead.offsetLeft == 1000 || snakeHead.offsetLeft == -20 || snakeHead.offsetTop == 500 || snakeHead.offsetTop == -20){
+			if(confirm("Game over 请开始新游戏")){
+					window.location.reload();
+				}
+				else{
+					clearInterval(timer);
+				}
+		}
+		bDown = true;
+	}
+	})();
+	
+	document.onkeydown = function(e){
+		e = e || window.event;
+		e.preventDefault();
+		e.returnValue = false;
+		var keyCode = e.which || e.keyCode;
+		switch(keyCode){
+			case 37:
+			direction = "left";
+			break;
+			case 38:
+			direction = "up";
+			break;
+			case 39:
+				if(bDown){
+					if(direction != "right"){
+						direction = 'right';
+					}
+				}
+				bDown = false;
+			break;
+			case 40:
+				if(bDown){
+					if(direction != "down"){
+						direction = "down";
+					}
+				}
+				bDown = false;
+			break;
+			case 32:
+			clearInterval(timer);
+			break;
+		}
+	};
+</script>
+</body>
+</html>

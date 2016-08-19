@@ -1,0 +1,355 @@
+/*body*/
+body{
+	background-color: #E8E8E8;
+	font-family: "Microsoft YaHei","KaiTi","BiauKai";
+}
+/*container*/
+#container{
+	width: 860px;
+	margin: 10px auto;
+	/*有性能问题*/
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+}
+/*header*/
+header{
+	width: 860px;
+	height: 30px;
+	margin: 0 auto;
+}
+/*introduce*/
+#introduce{
+	width: 860px;
+	height: 250px;
+	background: #fdc750;
+}
+#introduce div.about{
+	float: left;
+    margin-top: 30px;
+    width: 490px;
+    margin-left: 20px;
+}
+#introduce div.photo{
+	float: left;
+	width: 130px;
+	height: 186px;
+	box-shadow: 2px 2px 2px #ccc;
+}
+#introduce div.photo img{
+	width: 100%;
+}
+#introduce div.photo-aside{
+	width: 260px;
+	margin-left: 30px;
+	float: left;
+}
+.photo-aside p{
+	line-height: 30px;
+}
+#introduce div.photo-aside h1, #introduce div.photo-aside h3, #introduce div.photo-aside p{
+	margin: 10px 0;
+	color: #fff;
+	letter-spacing: 3px;
+}
+#introduce div.photo-aside h1{
+	font-size: 37px;	
+	font-weight: 503;
+}
+#introduce div.photo-aside h3{
+	font-weight: 302;
+	font-size: 20px;
+}
+#introduce div.photo-aside p{
+	color: #a87f09;
+	font-weight: 200;
+	margin-top: 20px;
+	font-size: 17px;
+}
+#introduce ul.personal-info{
+	float: left;
+    margin-top: 10px;
+    width: 310px;
+    margin-left: 10px;
+    padding: 20px 0 0 20px;
+}
+#introduce ul.personal-info li{
+	font-weight: 500;
+	color: #a87f09;
+	height: 30px;
+	width: 100%;
+	line-height: 30px;
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+#introduce ul.personal-info span{
+	width: 220px;
+	padding: 4px 7px;
+	float: right;
+}
+#introduce ul.personal-info label{
+	padding: 4px 7px;
+	float: left;
+}
+/*resume*/
+#resume{
+	width: 820px;
+	/*height: 800px;*/
+	padding: 20px 20px;
+	background-color: #fff;
+}
+#resume .education{
+	width: 100%;
+}
+#resume .education h3, #resume .project h3.project-title, #resume .skills h3{
+	height: 21px;
+	color: #333;
+	position: relative;
+	line-height: 21px;
+	padding-bottom: 13px;
+	border-bottom: 1px solid #ebebeb;
+	margin-top: 20px;
+}
+#resume .education h3:after, #resume .project h3.project-title:after, #resume .skills h3:after{
+	content: '';
+    width: 40px;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+  	background: #fdc750;
+}
+#resume .education p{
+	height: 23px;
+	line-height: 23px;
+	margin-top: 10px;
+}
+#resume .education p span{
+	float: right;
+	margin-right: 50px;
+}
+#resume .skills{
+	width: 100%;
+}
+.skills .skills-list{
+	width: 96%;
+	margin: 20px auto;
+}
+#resume .skills h4{
+	text-indent: 10px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 5px;
+	opacity: 0.8;
+	cursor: pointer;
+	border-left: 3px;
+	background-color: #d6efff;
+	border-left-color: #2a7da9;
+	color: #2a7da9;
+}
+#resume .level1:hover ul{
+	animation: fadein 1s forwards;
+	-webkit-animation: fadein 1s forwards;
+	-moz-animation: fadein 1s forwards;
+	-ms-animation: fadein 1s forwards;
+	z-index: 1;
+}
+.skills .level1:after{
+	content: '';
+	display: block;
+	/*visibility: hidden;*/
+	height: 20px;
+}
+.skills li{
+	position: relative;
+}
+#resume .html-css h4{
+	width: 85%;
+}
+#resume .javascript h4{
+	width: 80%;
+}
+.requirejs h4{
+	width: 70%;
+}
+.jquery-bootstrap h4{
+	width: 80%;
+}
+.zeptojs-jquerymobile h4{
+	width: 75%;
+}
+.tools h4{
+	width: 65%;
+}
+.php h4{
+	width: 60%;
+}
+.nodejs h4{
+	width: 40%;
+}
+.skills .level1 ul{
+	opacity: 0;
+	position: absolute;
+	left: 170px;
+	top: 10px;
+	width: 500px;
+}
+#resume .project{
+	width: 100%;
+}
+#resume .project h4{
+	font-weight: 400;
+	color: #fdc750;
+	height: 50px;
+	line-height: 50px;
+}
+.project li{
+	width: 740px;
+	margin: 0 auto;
+}
+#resume .project h4 span{
+	float: right;
+	margin-right: 30px;
+}
+/*portfolio*/
+#portfolios{
+	width: 100%;
+	height: 1350px;
+	background-color: #fff;
+}
+#portfolios h3{
+	width: 800px;
+	height: 21px;
+	margin: 0 auto;
+	color: #333;
+	position: relative;
+	line-height: 21px;
+	padding: 16px 0 14px;
+	border-bottom: 1px solid #ebebeb;
+}
+#portfolios h3:after{
+	content: '';
+    width: 40px;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+  	background: #fdc750;
+}
+#portfolios ul{
+	width: 260px;
+	padding: 30px 10px;
+	float: left;
+}
+#portfolios .first{
+	margin-left: 14px;
+}
+#portfolios li{
+	width: 250px;
+	height: 250px;
+	position: relative;
+	cursor: pointer;
+}
+#portfolios .portfolio{
+	width: 250px;
+	height: 250px;
+	margin-bottom: 20px;
+}
+#portfolios .portfolio img{
+	/*max-width: 100%;*/
+	/*图片失真*/
+	width: 250px;
+	height: 230px;
+}
+#portfolios .hover{
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+/* 淡入CSS3动画 */
+@-webkit-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@-moz-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@-ms-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+#portfolios li:hover .hover{
+	animation: fadein 1s forwards;
+	-webkit-animation: fadein 1s forwards;
+	-moz-animation: fadein 1s forwards;
+	-ms-animation: fadein 1s forwards;
+}
+#portfolios .mask{
+	width: 250px;
+	height: 230px;
+	background-color: #333;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0.3;
+}
+#portfolios .mask-title{
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	font-weight: 404;
+	position: absolute;
+	left: 0;
+	bottom: 23px;
+}
+/*top wechat*/
+#top-wechat{
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	width: 40px;
+	height: 245px;
+}
+#top-wechat .wechat{
+	cursor: pointer;
+	width: 40px;
+	height: 195px;
+	background: url(../img/icon.jpg) no-repeat -189px 0px;
+}
+#top-wechat:hover .erweima{	
+	display: block;
+}
+.erweima{
+	position: absolute;
+	left: -170px;
+	top: 20px;
+	width: 156px;
+	height: 156px;
+	background: url(../img/icon.jpg) no-repeat 0 -6px;
+	display: none;
+}
+#top-wechat .top{
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	margin-top: 10px;
+	background: url(../img/icon.jpg) no-repeat -189px -206px;
+}
+/*footer*/
+footer{
+	width: 860px;
+	height: 30px;
+	margin: 0 auto;
+	font-size: 14px;
+	text-align: center;
+}

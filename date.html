@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+     <title>calendar</title>
+     <style type="text/css">
+         *{margin: 0px;padding: 0px;}
+         #calendar{text-align: center;border: thin;}
+         .calendar th{background-color: #87CEEB;}
+         .calendar .today{background-color: #FFDAB9;color: #32CD32;font-weight: bold;}
+         .calendar-button{
+            outline: none;
+            cursor: pointer;
+            margin: 0px 5px;
+            text-decoration: none;
+         }
+         table.calendar{
+            font-weight: bold;
+            color: #666;
+         }
+     </style>
+     
+ </head>
+ <body>
+     <div id="canlendar">
+     </div>
+     <script type="text/javascript">
+         function isLeapYear(year) {
+             year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)?true:false;
+         }
+         function monthDay(year, month) {
+             if (1 == month || 3 == month || 5 == month || 7 == month || 8 == month || 10 == month || 12 == month) {
+                 return 31;
+             }
+             else if (4 == month || 6 == month || 9 == month || 11 == month) {
+                 return 30;
+             }
+             else {
+                 if (isLeapYear(year)) {
+                     return 29;
+                 }
+                 else {
+                     return 28;
+                 }
+             }
+         }
+         function getStartDate(d) {
+             d.setDate(1);
+             return d;
+         }
+         function getEndDate(d) {
+             var totalDays = monthDay(parseInt(d.getFullYear()), parseInt(d.getMonth() + 1));
+             d.setDate(totalDays);
+             return d;
+         }
+         var d = new Date();
+         var y = d.getFullYear();
+         var m = d.getMonth();
+         var mid;
+
+         function Calender(obj) {
+             this.obj = mid = obj;
+             this.obj.innerHTML = this.createCalender(getStartDate(new Date(y, m)), getEndDate(new Date(y, m)));
+         }
+ 
+         Calender.prototype = {
+             createCalender: function (start, end) {
+                 var html = "<table class='calendar' border='1px' cellpadding='3px' cellspacing='0'><thead>"
+                 + "<tr><th colspan='7'><a href='javascript:;' class='calendar-button' onclick='preYear()'>上一年</a>" + y + "<a href='javascript:;' class='calendar-button' onclick='nextYear()'>下一年</a>"
+                 + "<a href='javascript:;' class='calendar-button' onclick='preMonth()'>上一月</a>" + parseInt(m + 1) + "<a href='javascript:;' class='calendar-button' onclick='nextMonth()'>下一月</a>"
+                 + "<a href='javascript:;' class='calendar-button' onclick='today()'>今天</a></th></tr>"
+                 + "<tr><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>";
+                 var days = end.getDate();
+                 var week = start.getDay() == 0 ? 7 : start.getDay();
+                 var tmpd = new Date();
+                 day = tmpd.getDate();
+                 for (var i = 1; i <= 42; i++) {
+                     if (1 == i % 7 || 1 == i) {
+                         html += "<tr>";
+                     }
+                     if (i >= week && i <= (week + days - 1)) {
+                         if (day == (i - week + 1)) {
+                             if (d.getFullYear() == start.getFullYear() && d.getMonth() == start.getMonth()) {
+                                 html += "<td class='today'>" + day + "</td>";
+                             }
+                             else {
+                                 html += "<td onclick='clickToday()'>" + day + "</td>";
+                             }
+                         } else if (day < i - week + 1) {
+                             html += "<td>" + parseInt(i - week + 1) + "</td>";
+                         }
+                         else {
+                             html += "<td>" + parseInt(i - week + 1) + "</td>";
+                         }
+                         if (7 == i % 7 || 7 == i) {
+                             html += "</tr>";
+                         }
+                     }
+                     else {
+                         html += "<td>&nbsp;</td>";
+                     }
+                 }
+                 html += "</table>";
+                 return html;
+             }
+         }
+ 
+         function preYear() {
+             y = y - 1;
+             new Calender(mid).createCalender(getStartDate(new Date(y, m)), getEndDate(new Date(y, m)));
+         }
+ 
+         function nextYear() {
+             y = y + 1;
+             new Calender(mid).createCalender(getStartDate(new Date(y, m)), getEndDate(new Date(y, m)));
+         }
+ 
+         function preMonth() {
+             m = m - 1;
+             if (-1 == m) {
+                 y = y - 1;
+                 m = 11;
+             }
+             new Calender(mid).createCalender(getStartDate(new Date(y, m)), getEndDate(new Date(y, m)));
+         }
+ 
+         function nextMonth() {
+             m = m + 1;
+             if (12 == m) {
+                 y = y + 1;
+                 m = 0;
+             }
+             new Calender(mid).createCalender(getStartDate(new Date(y, m)), getEndDate(new Date(y, m)));
+         }
+ 
+         function today() {
+             y = new Date().getFullYear();
+             m = new Date().getMonth();
+             new Calender(mid).createCalender(getStartDate(new Date()), getEndDate(new Date()));
+         }
+        new Calender(document.getElementById("canlendar"));
+     </script>
+ </body>
+ </html>

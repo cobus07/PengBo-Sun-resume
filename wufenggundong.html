@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 600px;
+			height: 400px;
+			margin: 100px auto;
+			border: 1px solid #333;
+			position: relative;
+			/*overflow: scroll;*/
+			overflow: hidden;
+		}
+		#content{
+			height: 200px;
+			/*width: 2000px;*/
+			margin-top: 30px;
+			position: absolute;
+		}
+		#content li{
+			cursor: pointer;
+			width: 200px;
+			height: 200px;
+			background-color: #000;
+			color: #fff;
+			text-align: center;
+			line-height: 200px;
+			float: left;
+			margin-right: 20px;
+		}
+		#arrow{
+			width: 300px;
+			height: 70px;
+			position: absolute;
+			left: 50%;
+			margin-left: -150px;
+			bottom: 30px;
+		}
+		#arrow span{
+			display: inline-block;
+			line-height: 70px;
+			text-align: center;
+			width: 130px;
+			height: 70px;
+			background: #ccc;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="content">
+			<li>0</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div id="arrow">
+			<span id="prev">&lt;&lt;向左</span>
+			<span id="next">向右&gt;&gt;</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var speed = 7;
+		var oContent = document.getElementById('content');
+		var oNext = document.getElementById('next');
+		var oPrev = document.getElementById('prev');
+		oContent.innerHTML += oContent.innerHTML;
+		var aLi = oContent.getElementsByTagName('li');
+		oContent.style.width = aLi.length * (aLi[0].offsetWidth + 20) + 'px';
+		var timer;
+		function play(){
+			timer = setInterval(function(){
+				oContent.style.left = (oContent.offsetLeft + speed) + 'px';
+				if(oContent.offsetLeft <= -oContent.offsetWidth/2){
+					oContent.style.left = 0;
+				}else if(oContent.offsetLeft > 0){
+					oContent.style.left = -oContent.offsetWidth/2 + 'px';
+				}
+			},30);
+		}
+		play();
+		oNext.onmouseover = oPrev.onmouseover = function(){
+			if(this==oNext){
+				speed = 7;
+			}else{
+				speed = -7;
+			}
+		};
+		oContent.onmouseover = function(){
+			clearInterval(timer);
+		};
+		oContent.onmouseout = function(){
+			play();
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html{
+			font-size: 62.5%;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#tab{
+			height: 3rem;
+			border-bottom: 0.5rem;
+		}
+		#container{
+			margin: 5rem auto;
+			font-size: 3rem;
+			width: 36rem;
+			height: 23rem;
+			/*background-color: #ccc;*/
+		}
+		#content{
+			background-color: #ccc;
+		}
+		#content div{
+			width: 36rem;
+			height: 20rem;
+			font-size: 2rem;
+			display: none;
+		}
+		#content div.selected{
+			display: block;
+		}
+		li{
+			font-size: 2rem;
+			width: 11rem;
+			height: 3rem;
+			background-color: #ccc;
+			float: left;
+			text-align: center;
+			line-height: 3rem;
+			margin-right: 0.5rem;
+			cursor: pointer;
+		}
+		li.selected{
+			background-color: #aaa;
+			color: #fff;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+			<li class="selected">111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
+		<div id="content">
+			<div class="selected">111</div>
+			<div>222</div>
+			<div>333</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oTab = document.getElementById('tab');
+		var aLi = oTab.getElementsByTagName('li');
+		var oContent = document.getElementById('content');
+		var aDiv = oContent.getElementsByTagName('div');
+		// for(var i=0; i<aLi.length; i++){
+		// 	aLi[i].index = i;
+		// 	aLi[i].onclick = function(){
+		// 		for(var j=0; j<aLi.length; j++){
+		// 			aLi[j].className = '';
+		// 			aDiv[j].className = '';
+		// 		}
+		// 		this.className = "selected";
+		// 		aDiv[this.index].className = "selected";
+		// 	};
+		// }
+
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].index = i;
+			aLi[i].onclick = function(){
+				for(var j=0; j<aLi.length; j++){
+					aLi[j].className = '';
+					aDiv[j].className = '';
+				}
+				this.className = "selected";
+				aDiv[this.index].className = "selected";
+			};
+		}
+	</script>
+</body>
+</html>

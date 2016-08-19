@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		html{
+			font-size: 62.5%;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 60rem;
+			height: 40rem;
+			margin: 5rem auto;
+			background: #ccc;
+			position: relative;
+		}
+		#imgs div{
+			font-size: 5rem;
+			width: 60rem;
+			height: 40rem;
+			background-color: #ccc;
+			display: none;
+			line-height: 40rem;
+			text-align: center;
+		}
+		#tab li{
+			float: left;
+			width: 2rem;
+			height: 2rem;
+			line-height: 2rem;
+			text-align: center;
+			margin-right: 0.5rem;
+			cursor: pointer;
+			background: #000;
+			color: #fff;
+
+		}
+		#tab{
+			position: absolute;
+			right: 1rem;
+			bottom: 0.5rem;
+			font-size: 1.7rem;
+		}
+		#arrow{
+			position: absolute;
+			left: 1rem;
+			bottom: 0.5rem;
+
+		}
+		#arrow span{
+			cursor: pointer;
+			background: #000;
+			float: left;
+			width: 2rem;
+			height: 2rem;
+			color: #fff;
+			margin-right: 5px;
+			line-height: 2rem;
+			text-align: center;
+		}
+		#imgs div.selected{
+			display: block;
+		}
+		#tab li.selected{
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="imgs">
+			<div class="selected">1</div>
+			<div>2</div>
+			<div>3</div>
+		</div>
+		<ul id="tab">
+			<li class="selected">1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div id="arrow">
+			 <span id="prev">&lt;</span>
+			 <span id="next">&gt;</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oContainer = document.getElementById('container');
+		var oImgs = document.getElementById('imgs');
+		var aDiv = oImgs.getElementsByTagName('div');
+		var oTab = document.getElementById('tab');
+		var aLi = oTab.getElementsByTagName('li');
+		index = 0;
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].index = i;
+			aLi[i].onclick = function(){
+				changeImg(this.index);
+			};
+		}
+		function changeImg(index){
+			for(var j=0; j<aLi.length; j++){
+					aLi[j].className = '';
+					aDiv[j].className = '';
+				}
+				aLi[index].className = "selected";
+				aDiv[index].className = "selected";
+		}
+		var oNext = document.getElementById('next');
+		var oPrev = document.getElementById('prev');
+		oPrev.onclick = function(){
+			index--;
+			if(index < 0){
+				index = aLi.length - 1;
+			}
+			changeImg(index);
+		}
+		oNext.onclick = function(){
+			index++;
+			if(index > aLi.length - 1){
+				index = 0;
+			}
+			changeImg(index);
+		}
+
+		var timer;
+		function play(){
+			timer = setInterval(function(){
+			oNext.onclick();
+		},2000);
+		}
+		oContainer.onmouseover = function(){
+			clearInterval(timer);
+		};
+		oContainer.onmouseout = function(){
+			play();
+		};
+	</script>
+</body>
+</html>

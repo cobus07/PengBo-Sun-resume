@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 400px;
+			height: 500px;
+			border: 1px solid #aaa;
+			margin: 50px auto;
+			position: relative;
+			overflow: hidden;
+			border-radius: 5px;
+		}
+		#content{
+			width: 380px;
+			height: 1000px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#scroll{
+			width: 20px;
+			height: 500px;
+			background: #ccc;
+			position: absolute;
+			border-radius: 5px;
+			top: 0;
+			right: 0;
+		}
+		#scroll-bar{
+			border-radius: 5px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 20px;
+			height: 40px;
+			cursor: pointer;
+			background: #333;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="content">你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好1234567uytrewq234好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好erthjhgerfghgfsdrfghjm你好你好你好你好你好你好你好你好你好你好你好你好你好你ertyuytressdfgbnbvcdfvbn好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你23456yhgfdew345yhjnbvc你好你好你好你好你好你erftgyhbvcxdrftgyhnb vcz好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好ertyhjhgfdsdfbnbvcxxcvbn你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你wertyuik,mnbvcxsdfghjhtrtyuijnhbvcdsdfghjkmnbvfdftgyhj你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你ertyhbvcxdsdertyujn你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你ert6y7890987654好你好你好好你好你好你好你123456789好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你iuytrewq好好你好你好你poiuy56789好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好8765432345tyui9oie好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你oiuytrew好你好你好好你好你234567890好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好好你好你好你好你好你好
+		</div>
+		<div id="scroll">
+			<div id="scroll-bar"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oContent = document.getElementById('content');
+		var oContainer = document.getElementById('container');
+		var oScrollBar = document.getElementById('scroll-bar');
+		var oScroll = document.getElementById('scroll');
+		oScrollBar.onmousedown = function(e){
+			e = e || window.event;
+			iDisY = e.clientY - oScrollBar.offsetTop - oContainer.offsetTop;
+			oContainer.onmousemove = function(e){
+				e = e || window.event;
+				iTop = e.clientY - iDisY - oContainer.offsetTop;
+				if(iTop < 0){
+					iTop = 0;
+				}else if(iTop > oScroll.offsetHeight - oScrollBar.offsetHeight){
+					iTop = oScroll.offsetHeight - oScrollBar.offsetHeight;
+				}
+				var fscal = iTop/(oScroll.offsetHeight - oScrollBar.offsetHeight);
+				oContent.style.top = (oContainer.offsetHeight - oContent.offsetHeight)*fscal +'px';
+				oScrollBar.style.top = iTop + 'px';
+
+			};
+			// (function(e){
+			// 	e = e || window.event;
+			// 	if(e.preventDefault){
+			// 		e.preventDefault();
+			// 	}else{
+			// 		e.returnValue = false;
+			// 	}
+			// })();
+			// 火狐不好使
+			if(e.preventDefault){
+				e.preventDefault();
+			}else{
+				e.returnValue = false;
+			}
+			// return false;
+		};
+		oContainer.onmouseup = function(){
+			oContainer.onmousemove = null;
+		};
+		function addEvent(elem, type, fn){
+			if(elem.addEventListener){ //w3c标准
+				elem.addEventListener(type, fn, false);
+			}else if(elem.attachEvent){ //ie
+				elem.attachEvent('on'+type, fn);
+			}else{
+				elem[on+type] = fn;
+			}
+		}
+		function updown(){
+				var iTop = oScrollBar.offsetTop;
+				if(iTop < 0){
+					iTop = 0;
+				}
+				else if(iTop > oScroll.offsetHeight - oScrollBar.offsetHeight){
+					iTop = oScroll.offsetHeight - oScrollBar.offsetHeight;
+				}
+				var fscal = iTop/(oScroll.offsetHeight - oScrollBar.offsetHeight);
+				oContent.style.top = (oContainer.offsetHeight - oContent.offsetHeight)*fscal +'px';
+				oScrollBar.style.top = iTop + 'px';
+		}
+		// 火狐标准 向上滑动是负值（-3）向下滑动是正值（3）
+		addEvent(oContainer, 'DOMMouseScroll', function(e){
+			// alert(e.detail);
+			e = e || window.event;			
+			if(e.detail < 0){
+				updown();
+				oScrollBar.style.top = (oScrollBar.offsetTop - 20) + 'px';
+			}else{
+				oScrollBar.style.top = (oScrollBar.offsetTop + 20) + 'px';
+				updown();
+			}
+		});
+		// 其他浏览器 向上滑动滚轮是正值（120）向下滑动时负值（-120）
+		addEvent(oContainer, 'mousewheel', function(e){
+			// alert(e.wheelDelta);
+			e = e || window.event;
+			if(e.wheelDelta > 0){
+				oScrollBar.style.top = (oScrollBar.offsetTop - 20) + 'px';
+				updown();
+
+			}else{
+				oScrollBar.style.top = (oScrollBar.offsetTop + 20) + 'px';
+				updown();
+			}
+		});
+
+	</script>
+</body>
+</html>

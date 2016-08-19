@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 640px;
+			height: 240px;
+			margin: 50px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#tab{
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+			z-index: 1;
+		}
+		#tab li{
+			width: 15px;
+			height: 15px;
+			background: pink;
+			float: left;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		#tab .selected{
+			background: #fff;
+		}
+		#imgs{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#imgs img{
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+			<li class="selected"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="imgs">
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+		</div>
+	</div>
+	
+	<script src="js/mylib.js"></script>
+	<script>
+		var oContainer = document.getElementById('container');
+		var oTab = document.getElementById('tab');
+		var aLi = oTab.getElementsByTagName('li');
+		var oImgs = document.getElementById('imgs');		
+		var aImg = oImgs.getElementsByTagName('img');
+		var index = 0;
+
+		oImgs.appendChild(aImg[0].cloneNode());//克隆一个元素，添加到#imgs后
+
+		oImgs.style.width = aImg.length * aImg[0].offsetWidth + 'px';
+
+		//0 -0*img.offsetWidth, 1 -1*img.offsetWidth
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].index = i;
+			aLi[i].onmouseover = function(){
+				index = this.index;
+				changeImg(index);
+			};
+		}
+
+		function changeImg(idx){
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].className = '';
+			}
+			aLi[idx==aLi.length?0:idx].className = 'selected';
+			animate(oImgs, {left: -idx*aImg[0].offsetWidth});
+		}
+
+		var timer;
+		function play(){
+			timer = setInterval(function(){
+				index++;
+				/*if(index == aImg.length){
+					index = 0;
+				}*/
+				// if(oImgs.offsetLeft <= -(aImg.length-1)*aImg[0].offsetWidth){
+				if(index == aImg.length){
+					oImgs.style.left = 0;
+					index = 1;
+				}
+				changeImg(index);
+			}, 2000);
+		}
+
+		play();
+
+		oContainer.onmouseover = function(){
+			clearInterval(timer);
+		};
+		oContainer.onmouseout = function(){
+			play();
+		};
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
