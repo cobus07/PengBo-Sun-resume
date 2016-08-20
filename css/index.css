@@ -101,7 +101,7 @@ header{
 #resume .education{
 	width: 100%;
 }
-#resume .education h3, #resume .project h3.project-title, #resume .skills h3{
+#resume .education h3, #resume .project h3.project-title, #resume .skills h3, #resume .internship h3{
 	height: 21px;
 	color: #333;
 	position: relative;
@@ -110,7 +110,7 @@ header{
 	border-bottom: 1px solid #ebebeb;
 	margin-top: 20px;
 }
-#resume .education h3:after, #resume .project h3.project-title:after, #resume .skills h3:after{
+#resume .education h3:after, #resume .project h3.project-title:after, #resume .skills h3:after, #resume .internship h3:after{
 	content: '';
     width: 40px;
     height: 1px;
@@ -120,17 +120,21 @@ header{
   	background: #fdc750;
 }
 #resume .education p{
+	width: 780px;
+	margin: 10px auto 0;
 	height: 23px;
 	line-height: 23px;
-	margin-top: 10px;
 }
-#resume .education p span{
+#resume .education .date{
 	float: right;
 	margin-right: 50px;
 }
 #resume .skills{
 	width: 100%;
 }
+#resume .skills .detail{
+	line-height: 30px;
+} 
 .skills .skills-list{
 	width: 96%;
 	margin: 20px auto;
@@ -169,7 +173,10 @@ header{
 #resume .javascript h4{
 	width: 80%;
 }
-.requirejs h4{
+.angularjs h4{
+	width: 70%;
+}
+.requirejs-seajs h4{
 	width: 70%;
 }
 .jquery-bootstrap h4{
@@ -207,9 +214,13 @@ header{
 	width: 740px;
 	margin: 0 auto;
 }
-#resume .project h4 span{
+#resume .project .role{
 	float: right;
 	margin-right: 30px;
+}
+#resume .project p{
+	line-height: 30px;
+	word-spacing: 2px;
 }
 /*portfolio*/
 #portfolios{
@@ -345,6 +356,26 @@ header{
 	margin-top: 10px;
 	background: url(../img/icon.jpg) no-repeat -189px -206px;
 }
+/*internship*/
+#resume .internship h4{
+	font-weight: 400;
+	color: #fdc750;
+	height: 50px;
+	line-height: 50px;
+	width: 740px;
+	margin: 0 auto;
+}
+#resume .internship .date{
+	float: right;
+	margin-right: 30px;
+}
+#resume .internship p{
+	width: 740px;
+	margin: 0 auto;
+	word-spacing: 2px;
+	line-height: 30px;
+}
+
 /*footer*/
 footer{
 	width: 860px;

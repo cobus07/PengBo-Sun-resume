@@ -3,7 +3,7 @@
 (function(){
 	var arr = new Array();
     arr[0] = "孙鹏博";
-    arr[1] = "web前端工程师(实习生)";
+    arr[1] = "web前端工程师";
     var i = 0;
     var k = 0;
     function show(){
